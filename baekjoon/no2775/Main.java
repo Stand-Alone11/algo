@@ -1,7 +1,5 @@
-package baekjoon.no2775;
+//package baekjoon.no2775;
 import java.io.*;
-
-//TODO not solved
 
 public class Main {
     public static void main(String[] args) throws IOException{
