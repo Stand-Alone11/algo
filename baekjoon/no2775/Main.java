@@ -1,4 +1,4 @@
-//package baekjoon.no2775;
+package baekjoon.no2775;
 import java.io.*;
 
 public class Main {
