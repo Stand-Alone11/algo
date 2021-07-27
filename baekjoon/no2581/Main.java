@@ -24,9 +24,11 @@ public class Main {
 
         if(primeMin == 0) {
             System.out.println(-1);
+            sc.close();
             return;
         }
         System.out.println(sum);
         System.out.println(primeMin);
+        sc.close();
     }
 }
