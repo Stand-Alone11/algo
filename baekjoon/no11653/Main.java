@@ -1,13 +1,11 @@
 package baekjoon.no11653;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
-        ArrayList<Integer> array = new ArrayList<>();
 
         if(input == 1) return;
         int i = 2;
