@@ -7,7 +7,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
 
-        if(input == 1) return;
+        if(input == 1) {sc.close(); return;}
         int i = 2;
         while(input != 1) {
             if(input % i == 0) {
@@ -19,5 +19,6 @@ public class Main {
 
             if(input == 1) break;
         }
+        sc.close();
     }
 }

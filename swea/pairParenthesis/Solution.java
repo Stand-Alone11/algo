@@ -10,7 +10,6 @@ public class Solution {
         System.setIn(new FileInputStream("algo/swea/pairParenthesis/pairParenthesis.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = 10;
-        char[] ary = {'(', ')', '{', '}', '[', ']'}; // 40, 41, 123, 125, 91, 93
 
         for (int tc = 1; tc <= T; tc++) {
             Stack<Character> stk = new Stack<>();

@@ -18,6 +18,7 @@ public class Solution {
             
             f(a, b, 1);
         }
+        sc.close();
     }
 
     public static void f(int a, int b, int c) {
