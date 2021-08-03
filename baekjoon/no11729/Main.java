@@ -6,97 +6,79 @@ import java.util.Scanner;
 
 public class Main {
     static int count = 0;
-    static int i1 = -1;
-    static int i2 = -1;
-    static int i3 = -1;
-    static int[] stk1, stk2, stk3;
+    static int[] index = { -1, -1, -1 };
+    static int[][] stks = new int[3][];
+    static int N;
     static ArrayList<String> aryLst = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+        N = sc.nextInt();
         sc.close();
 
-        stk1 = new int[N];
-        stk2 = new int[N];
-        stk3 = new int[N];
+        stks[0] = new int[N];
+        stks[1] = new int[N];
+        stks[2] = new int[N];
 
         for (int i = 0; i < N; i++) {
-            stk1[++i1] = N - i;
+            stks[0][++index[0]] = N - i;
         }
 
         hanoi(N, 1, 3, 2);
     }
 
     public static void hanoi(int n, int start, int end, int left) {
-        if (canMove(n, start, end)) {
-            move(n, start, end, left);
-            hanoi(n + 1, start, left, end);
+        int currentN = find(n);
+        if (canMove(n, currentN, end)) { // 찾은 n의 위치에서 end로 옮길 수 있으면
+            move(n, currentN, end); // n을 현위치에서 end로 옮긴다
+            if (isHanoi(n, end)) {
+                hanoi(n + 1, find(n + 1), left, end);
+            } else {
+                hanoi(n - 1, find(n - 1), end, left);
+            }
         }
         hanoi(n - 1, start, left, end);
+    }
+
+    public static int find(int n) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j <= index[i]; j++) {
+                if (stks[i][j] == n)
+                    return i + 1;
+            }
+        }
+        return -1;
     }
 
     public static boolean canMove(int n, int start, int end) {
         boolean a = false;
 
-        switch (start) {
-            case 1:
-                if (stk1[i1] == n) {
+        for (int i = 0; i <= index[start - 1]; i++) { //
+            if (stks[start - 1][i] == n) { // n의 인덱스를 찾고
+                if (i == index[start - 1]) // 그 인덱스가 스택의 맨 위라면
                     a = true;
-                }
-                break;
-            case 2:
-                if (stk2[i2] == n) {
-                    a = true;
-                }
-                break;
-            case 3:
-                if (stk3[i3] == n) {
-                    a = true;
-                }
-                break;
+            }
         }
-        switch (end) {
-            case 1:
-                if (i1 == -1 || stk1[i1] < n)
-                    return a;
-                break;
-            case 2:
-                if (i2 == -1 || stk2[i2] < n)
-                    return a;
-                break;
-            case 3:
-                if (i3 == -1 || stk3[i3] < n)
-                    return a;
-                break;
-        }
+
+        if (index[end - 1] == -1 || stks[end - 1][index[end - 1]] < n) // 목적 스택이 비거나 맨 위가 n보다 작을 때
+            return a;
+
         return false;
     }
 
-    public static void move(int n, int start, int end, int left) {
+    public static boolean isHanoi(int n, int end) {
+        for (int i = 0; i < n; i++) {
+            if (stks[end - 1][i] != n - i)
+                return false; // 밑에서 부터 차례대로 n, n-1.. 이 아니면
+        }
+        return true;
+    }
+
+    public static void move(int n, int start, int end) {
         int a = 0;
         System.out.println(start + " " + end);
-        switch (start) {
-            case 1:
-                a = stk1[i1--];
-                break;
-            case 2:
-                a = stk2[i2--];
-                break;
-            case 3:
-                a = stk3[i3--];
-                break;
-        }
-        switch (end) {
-            case 1:
-                stk1[++i1] = a;
-                break;
-            case 2:
-                stk2[++i2] = a;
-                break;
-            case 3:
-                stk3[++i3] = a;
-                break;
-        }
+
+        a = stks[start - 1][index[start - 1]--];
+        stks[end - 1][++index[end - 1]] = a;
     }
 }
