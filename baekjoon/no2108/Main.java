@@ -13,7 +13,7 @@ public class Main {
 
         int N = Integer.parseInt(br.readLine());
         int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-        double mean = 0.0, sum = 0.0;
+        double sum = 0.0;
         int[] input = new int[N];
         int[] count = new int[8001];
         int[] output = new int[N];
