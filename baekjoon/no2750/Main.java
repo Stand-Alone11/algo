@@ -43,11 +43,11 @@ public class Main {
         int mid = (l + r) / 2;
         swap(array, l, mid); // 미드와 해당 범위의 첫 요소 바꿈
 
-        int piv = array[l]; // 피봇은 배열의 첫번째
+        int piv = array[l]; // 피봇은 배열의 첫번째 값 즉, 중간위치에 있었던 값
         int i = l, j = r;
 
         while (i < j) {
-            while (piv < array[j]) { // 우측부터 피봇보다 작은값 찾기
+            while (piv < array[j]) { // 우측부터 피봇보다 같거나 작은값 찾기
                 j--;
             }
 
@@ -58,8 +58,8 @@ public class Main {
             swap(array, i, j); // 작은값, 큰값 서로 바꾸기
         }
         array[l] = array[i]; // 찾은 작은 값을 맨 앞으로
-        array[i] = piv; // 찾은 큰 값의 위치에 피봇 값(처음의 중간위치 값)으로 넣음
-        return i; // 큰 값 인덱스 리턴
+        array[i] = piv; // 찾은 큰 값의 위치에 피봇 값으로 넣음
+        return i; // 큰 값의 인덱스 리턴
     }
 
     public static void swap(int[] array, int a, int b) {
