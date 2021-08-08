@@ -2,6 +2,7 @@ package baekjoon.no18870;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -20,21 +21,22 @@ public class Main {
         for(int i = 0; i < N; i++) {
             int a = Integer.parseInt(st.nextToken());
             array[i] = a;
-            if(map.containsKey(a)) {
-                map.put(a, map.get(a) + 1);
-            } else {
-                map.put(a, 1);
-            }
         }
 
-        Set<Integer> keys = map.keySet();
-        for(int i = 0; i < N; i++) {
-            int count = 0;
-            for (Integer key : keys) {
-                if(key < array[i]) count++;
+        int[] cArray = array.clone();
+        Arrays.sort(cArray);
+
+        int index = 0;
+        for(int n : cArray) {
+            if(!map.containsKey(n)) {
+                map.put(n, index++);
             }
-            sb.append(count).append(" ");
         }
+        
+        for(int n : array) {
+            sb.append(map.get(n)).append(" ");
+        }
+
         System.out.println(sb.toString());
     }
 }
