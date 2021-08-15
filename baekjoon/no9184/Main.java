@@ -3,7 +3,7 @@ package baekjoon.no9184;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-//TODO: ans checked
+//TODO: ans referenced
 public class Main {
     static int[][][] m = new int[21][21][21]; // 어차피 같은 식으로 반복이므로 m 초기화 불필요
     static int a, b, c;

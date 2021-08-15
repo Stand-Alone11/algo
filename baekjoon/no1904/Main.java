@@ -2,7 +2,7 @@ package baekjoon.no1904;
 
 import java.util.Scanner;
 
-//TODO: ans checked
+//TODO: ans referenced
 public class Main {
     static int N;
     static int[] memo;

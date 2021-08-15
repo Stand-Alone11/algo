@@ -2,23 +2,26 @@ package baekjoon.no1463;
 
 import java.util.Scanner;
 
-//TODO: not solved
 public class Main {
-    static int count = 0;
+    static int[] memo;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         int N = sc.nextInt();
+        memo = new int[N + 1];
         sc.close();
 
-        while (true) {
-            if (N == 1)
-                break;
+        memo[1] = 0;
 
+        for (int i = 2; i <= N; i++) {
+            memo[i] = memo[i - 1] + 1;
+            if (i % 2 == 0)
+                memo[i] = Math.min(memo[i], memo[i / 2] + 1);
+            if (i % 3 == 0)
+                memo[i] = Math.min(memo[i], memo[i / 3] + 1);
         }
 
-        System.out.println(count);
+        System.out.println(memo[N]);
     }
-
 }
