@@ -27,15 +27,20 @@ public class Main {
         for (int i = 0; i < N; i++) {
             ans = Math.max(findInc(i) + findDec(i), ans);
         }
-        System.out.println(ans);
+        System.out.println(ans - 1);
     }
 
     static int findInc(int idx) {
-        int mx;
-        for (int i = idx; i >= 0; i++) {
-
+        int[] length = new int[idx+1];
+        if(idx == 0) length[idx] = 1;
+        for(int i = 0; i < idx+1; i++) {
+            length[i] = 1;
+            for(int j = 0; j < i; j++) {
+                if(array[i] < array[j])
+                    length[i] = Math.max(length[i], length[j] + 1);
+            }
         }
-
+        return 
     }
 
     static int findDec(int idx) {
