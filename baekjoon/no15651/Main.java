@@ -8,7 +8,8 @@ public class Main {
     static int M, N;
     static int[] array, output;
     static StringBuilder sb = new StringBuilder();
-    public static void main(String[] args) throws Exception{
+
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
@@ -18,24 +19,24 @@ public class Main {
         array = new int[N];
         output = new int[M];
 
-        for(int i = 0; i < N;) {
+        for (int i = 0; i < N;) {
             array[i] = ++i;
-        } 
+        }
 
         dfs(0);
         System.out.println(sb.toString());
     }
 
     public static void dfs(int depth) {
-        if(depth == M) {
-            for(int i = 0; i < M; i++) {
+        if (depth == M) {
+            for (int i = 0; i < M; i++) {
                 sb.append(output[i]).append(" ");
             }
             sb.append("\n");
             return;
         }
 
-        for(int i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++) {
             output[depth] = array[i];
             dfs(depth + 1);
         }

@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-//TODO: not solved
+//TODO: ans referenced
 public class Main {
     static int N;
     static int[] array;
@@ -24,27 +24,35 @@ public class Main {
             array[i] = Integer.parseInt(st.nextToken());
         }
 
+        findInc();
+        findDec();
+
         for (int i = 0; i < N; i++) {
-            ans = Math.max(findInc(i) + findDec(i), ans);
+            ans = Math.max(memoA[i] + memoD[i], ans);
         }
         System.out.println(ans - 1);
     }
 
-    static int findInc(int idx) {
-        int[] length = new int[idx+1];
-        if(idx == 0) length[idx] = 1;
-        for(int i = 0; i < idx+1; i++) {
-            length[i] = 1;
-            for(int j = 0; j < i; j++) {
-                if(array[i] < array[j])
-                    length[i] = Math.max(length[i], length[j] + 1);
+    static void findInc() {
+        for (int i = 0; i < N; i++) {
+            memoA[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if (array[i] > array[j] && memoA[i] < memoA[j] + 1) {
+                    memoA[i] = memoA[j] + 1;
+                }
             }
         }
-        return 
     }
 
-    static int findDec(int idx) {
-
+    static void findDec() {
+        for (int i = N - 1; i >= 0; i--) {
+            memoD[i] = 1;
+            for (int j = N - 1; j > i; j--) {
+                if (array[i] > array[j] && memoD[i] < memoD[j] + 1) {
+                    memoD[i] = memoD[j] + 1;
+                }
+            }
+        }
     }
 
 }
