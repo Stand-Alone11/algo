@@ -29,9 +29,9 @@ public class Main {
             int r = zCoord.get(idx)[0];
             int c = zCoord.get(idx)[1];
 
-            if (searchRow(r, c) && searchColumb(r, c) && searchSqr(r, c)) {
-                idx++;
-            }
+            // if (searchRow(r, c) && searchColumb(r, c) && searchSqr(r, c)) {
+            // idx++;
+            // }
 
         }
     }
@@ -84,7 +84,8 @@ public class Main {
 
     }
 
-    static boolean searchSqr(int r, int c) {
+    // static boolean searchSqr(int r, int c) {
+    static void searchSqr(int r, int c) {
         if (r < 3) {
             if (c < 3) {
 

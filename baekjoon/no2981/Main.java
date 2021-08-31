@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-// solving...
+//TODO: solving.. ans referenced
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,9 +17,18 @@ public class Main {
 
         Arrays.sort(array);
 
-        for (int i = 1; i <= array[0]; i++) {
+        StringBuilder sb = new StringBuilder();
 
+        for (int i = 2; i < array[1] + 1; i++) {
+            int result = array[0] % i;
+            for (int j = 0; j < array.length; j++) {
+                if (j == array.length - 1 && array[j] % i == result)
+                    sb.append(i).append(" ");
+                if (array[j] % i != result)
+                    break;
+            }
         }
 
+        System.out.println(sb.toString());
     }
 }
